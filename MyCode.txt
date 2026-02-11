@@ -9,3 +9,9 @@ spark = SparkSession.builder \
     .getOrCreate()
 
 
+# Jira: DATA-102 - Read user data from source CSV
+users_df = spark.read.csv(
+    "/data/input/users.csv",
+    header=True,
+    inferSchema=True
+)
