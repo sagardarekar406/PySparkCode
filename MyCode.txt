@@ -1,1 +1,11 @@
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import (
+    col, lower, when, count, avg, current_date, trim
+)
+
+# Jira: DATA-101 - Initialize Spark session for user data pipeline
+spark = SparkSession.builder \
+    .appName("UserDataProcessingPipeline") \
+    .getOrCreate()
+
 
