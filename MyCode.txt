@@ -48,4 +48,9 @@ users_df = users_df.withColumn(
     current_date()
 )
 
+# Jira: DATA-109 - Aggregate user metrics by country
+country_summary_df = users_df.groupBy("country").agg(
+    count("*").alias("user_count"),
+    avg("age").alias("average_age")
+)
 
