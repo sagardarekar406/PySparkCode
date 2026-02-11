@@ -54,3 +54,9 @@ country_summary_df = users_df.groupBy("country").agg(
     avg("age").alias("average_age")
 )
 
+# Jira: DATA-110 - Persist aggregated output for downstream consumption
+country_summary_df.write.mode("overwrite").parquet(
+    "/data/output/country_user_summary"
+)
+
+spark.stop()
