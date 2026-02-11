@@ -25,6 +25,9 @@ users_df = users_df.filter(
     (col("age").isNotNull()) & (col("age") > 0)
 )
 
+# Jira: DATA-105 - Trim whitespace from string columns
+users_df = users_df.withColumn("email", trim(col("email"))) \
+                   .withColumn("country", trim(col("country")))
 
 
 
