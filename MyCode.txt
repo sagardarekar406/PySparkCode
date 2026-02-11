@@ -36,4 +36,12 @@ users_df = users_df.withColumn(
     lower(col("email"))
 )
 
+# Jira: DATA-107 - Add business rule to identify adult users
+users_df = users_df.withColumn(
+    "is_adult",
+    when(col("age") >= 18, True).otherwise(False)
+)
+
+
+
 
