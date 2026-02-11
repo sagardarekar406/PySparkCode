@@ -15,3 +15,13 @@ users_df = spark.read.csv(
     header=True,
     inferSchema=True
 )
+
+
+# Jira: DATA-103 - Remove duplicate users based on user_id
+users_df = users_df.dropDuplicates(["user_id"])
+
+# Jira: DATA-104 - Filter out users with invalid age values
+users_df = users_df.filter(
+    (col("age").isNotNull()) & (col("age") > 0)
+)
+
