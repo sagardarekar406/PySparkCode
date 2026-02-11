@@ -42,6 +42,10 @@ users_df = users_df.withColumn(
     when(col("age") >= 18, True).otherwise(False)
 )
 
-
+# Jira: DATA-108 - Enrich records with processing date
+users_df = users_df.withColumn(
+    "processed_date",
+    current_date()
+)
 
 
